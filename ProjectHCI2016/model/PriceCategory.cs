@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace model
 {
-    public class Class1
+    public enum PriceCategory
     {
+        Free,
+        low_prices,
+        medium_prices,
+        high_prices
     }
 }

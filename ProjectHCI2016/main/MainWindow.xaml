@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:main"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Manifestation Map" Height="350" Width="525">
     <Grid>
-        
+        <Button x:Name="add_manifest_btn" Content="Add Manifestation" HorizontalAlignment="Left" Margin="325,80,0,0" VerticalAlignment="Top" Width="115" Click="add_manifest_btn_Click"/>
+        <Button x:Name="button1" Content="Add Tag" HorizontalAlignment="Left" Margin="325,139,0,0" VerticalAlignment="Top" Width="115"/>
+        <Button x:Name="button2" Content="Add Manifest. Type" HorizontalAlignment="Left" Margin="325,201,0,0" VerticalAlignment="Top" Width="115"/>
+
     </Grid>
 </Window>

@@ -1,5 +1,4 @@
-﻿using main.Dialogs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,25 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace main
+namespace main.Dialogs
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AddManifestDialog.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddManifestDialog : Window
     {
-        public MainWindow()
+        public AddManifestDialog()
         {
             InitializeComponent();
-        }
-
-        private void add_manifest_btn_Click(object sender, RoutedEventArgs e)
-        {
-            AddManifestDialog amd = new AddManifestDialog();
-            amd.ShowDialog();
         }
     }
 }
