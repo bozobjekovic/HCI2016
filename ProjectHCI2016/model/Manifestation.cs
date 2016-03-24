@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace model
 {
-    public class Manifestation
+    public class Manifestation: INotifyPropertyChanged
     {
         private string idManifest;
         private string name;
@@ -20,6 +21,8 @@ namespace model
         private PriceCategory priceCategory;
         private string expectedAudience;
         private DateTime date;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public Manifestation()
         {
@@ -48,6 +51,14 @@ namespace model
                 idManifest, name, description, Type, serveAlcosol, icon, forHandicap, smokingAllowed, isOutside, priceCategory, expectedAudience, date);
         }
 
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
         public string IdManifest
         {
             get
@@ -57,7 +68,11 @@ namespace model
 
             set
             {
-                idManifest = value;
+                if (value != idManifest)
+                {
+                    idManifest = value;
+                    OnPropertyChanged("IdManifest");
+                }
             }
         }
 
@@ -70,7 +85,11 @@ namespace model
 
             set
             {
-                name = value;
+                if (value != name)
+                {
+                    name = value;
+                    OnPropertyChanged("Name");
+                }
             }
         }
 
@@ -83,7 +102,11 @@ namespace model
 
             set
             {
-                description = value;
+                if (value != description)
+                {
+                    description = value;
+                    OnPropertyChanged("Description");
+                }
             }
         }
 
@@ -96,7 +119,11 @@ namespace model
 
             set
             {
-                type = value;
+                if (value != type)
+                {
+                    type = value;
+                    OnPropertyChanged("Type");
+                }
             }
         }
 
@@ -109,7 +136,11 @@ namespace model
 
             set
             {
-                serveAlcosol = value;
+                if (value != serveAlcosol)
+                {
+                    serveAlcosol = value;
+                    OnPropertyChanged("ServeAlcosol");
+                }
             }
         }
 
@@ -122,7 +153,11 @@ namespace model
 
             set
             {
-                icon = value;
+                if (value != icon)
+                {
+                    icon = value;
+                    OnPropertyChanged("Icon");
+                }
             }
         }
 
@@ -135,7 +170,11 @@ namespace model
 
             set
             {
-                forHandicap = value;
+                if (value != forHandicap)
+                {
+                    forHandicap = value;
+                    OnPropertyChanged("ForHandicap");
+                }
             }
         }
 
@@ -148,7 +187,11 @@ namespace model
 
             set
             {
-                smokingAllowed = value;
+                if (value != smokingAllowed)
+                {
+                    smokingAllowed = value;
+                    OnPropertyChanged("SmokingAllowed");
+                }
             }
         }
 
@@ -161,7 +204,11 @@ namespace model
 
             set
             {
-                isOutside = value;
+                if (value != isOutside)
+                {
+                    isOutside = value;
+                    OnPropertyChanged("IsOutside");
+                }
             }
         }
 
@@ -174,7 +221,11 @@ namespace model
 
             set
             {
-                priceCategory = value;
+                if (value != priceCategory)
+                {
+                    priceCategory = value;
+                    OnPropertyChanged("PriceCategory");
+                }
             }
         }
 
@@ -187,7 +238,11 @@ namespace model
 
             set
             {
-                expectedAudience = value;
+                if (value != expectedAudience)
+                {
+                    expectedAudience = value;
+                    OnPropertyChanged("ExpectedAudience");
+                }
             }
         }
 
@@ -200,7 +255,11 @@ namespace model
 
             set
             {
-                date = value;
+                if (value != date)
+                {
+                    date = value;
+                    OnPropertyChanged("Date");
+                }
             }
         }
 

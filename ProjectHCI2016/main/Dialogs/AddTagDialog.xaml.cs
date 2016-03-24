@@ -15,23 +15,18 @@ using System.Windows.Shapes;
 namespace main.Dialogs
 {
     /// <summary>
-    /// Interaction logic for AddManifestDialog.xaml
+    /// Interaction logic for AddTagDialog.xaml
     /// </summary>
-    public partial class AddManifestDialog : Window
+    public partial class AddTagDialog : Window
     {
-        public AddManifestDialog()
+        public AddTagDialog()
         {
             InitializeComponent();
         }
 
-        private void cancelAddManBtn_Click(object sender, RoutedEventArgs e)
+        private void addTagCancelBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        private void addManifestBtn_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

@@ -31,5 +31,11 @@ namespace main
             AddManifestDialog amd = new AddManifestDialog();
             amd.ShowDialog();
         }
+
+        private void add_tag_btn_Click(object sender, RoutedEventArgs e)
+        {
+            AddTagDialog atd = new AddTagDialog();
+            atd.ShowDialog();
+        }
     }
 }
