@@ -4,8 +4,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:main.Dialogs"
+        xmlns:model="clr-namespace:model;assembly=model"
         mc:Ignorable="d"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="Add Manifestation" Height="565" Width="347" ResizeMode="NoResize">
+    <Window.Resources>
+        <local:RadioButtonCheckedConverter x:Key="RadioButtonCheckedConverter" ></local:RadioButtonCheckedConverter>
+        <sys:Boolean x:Key="True">True</sys:Boolean>
+        <sys:Boolean x:Key="False">False</sys:Boolean>
+        <x:Array x:Key="AlcosolList" Type="model:Manifestation">
+            <model:Manifestation ServeAlcosol = "No alcosol"/>
+            <model:Manifestation ServeAlcosol = "Bring alcosol"/>
+            <model:Manifestation ServeAlcosol = "Buy alcosol"/>
+        </x:Array>
+        <x:Array x:Key="PriceList" Type="model:Manifestation">
+            <model:Manifestation PriceCategory = "Free"/>
+            <model:Manifestation PriceCategory = "Low prices" />
+            <model:Manifestation PriceCategory = "Medium prices"/>
+            <model:Manifestation PriceCategory = "High prices"/>
+        </x:Array>
+        <x:Array x:Key="AudienceList" Type="model:Manifestation">
+            <model:Manifestation ExpectedAudience = "Kids"/>
+            <model:Manifestation ExpectedAudience = "Teenagers" />
+        </x:Array>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="143*"/>
@@ -23,24 +45,26 @@
         <Label x:Name="label9" Content="Price:" HorizontalAlignment="Left" Margin="22,362,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.789,0.192"/>
         <Label x:Name="label10" Content="Expected audience:&#xD;&#xA;" HorizontalAlignment="Left" Margin="22,394,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.289,0.269" Height="26"/>
         <Label x:Name="label11" Content="Date:" HorizontalAlignment="Left" Margin="22,424,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="26" Margin="142,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="26" Margin="142,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="49" Margin="142,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="142,176,0,0" VerticalAlignment="Top" Width="120" Height="26" Cursor="Arrow" Grid.ColumnSpan="2"/>
-        <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" Margin="142,208,0,0" VerticalAlignment="Top" Width="120" Height="26" Grid.ColumnSpan="2"/>
-        <RadioButton x:Name="radioButton" Content="Yes" HorizontalAlignment="Left" Margin="142,276,0,0" VerticalAlignment="Top" GroupName="Handicap" Grid.ColumnSpan="2"/>
-        <RadioButton x:Name="radioButton1" Content="No" HorizontalAlignment="Left" Margin="59,276,0,0" VerticalAlignment="Top" GroupName="Handicap" Grid.Column="1"/>
-        <RadioButton x:Name="radioButton2" Content="Yes" HorizontalAlignment="Left" Margin="142,306,0,0" VerticalAlignment="Top" GroupName="Smoking" Grid.ColumnSpan="2"/>
-        <RadioButton x:Name="radioButton3" Content="No" HorizontalAlignment="Left" Margin="59,306,0,0" VerticalAlignment="Top" GroupName="Smoking" Grid.Column="1"/>
-        <RadioButton x:Name="radioButton4" Content="Inside" HorizontalAlignment="Left" Margin="142,338,0,0" VerticalAlignment="Top" GroupName="InOutside" Grid.ColumnSpan="2"/>
-        <RadioButton x:Name="radioButton5" Content="Outside" HorizontalAlignment="Left" Margin="59,338,0,0" VerticalAlignment="Top" GroupName="InOutside" Grid.Column="1"/>
-        <DatePicker HorizontalAlignment="Left" Margin="142,424,0,0" VerticalAlignment="Top" Width="120" Height="26" Grid.ColumnSpan="2"/>
-        <ComboBox x:Name="comboBox2" HorizontalAlignment="Left" Margin="142,362,0,0" VerticalAlignment="Top" Width="120" Height="26" Grid.ColumnSpan="2"/>
-        <ComboBox x:Name="comboBox3" HorizontalAlignment="Left" Margin="142,394,0,0" VerticalAlignment="Top" Width="120" Height="26" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="manifestID" Text="{Binding IdManifest, Mode=OneWayToSource, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Height="26" Margin="142,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="name" Text="{Binding Name, Mode=OneWayToSource, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Height="26" Margin="142,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="description" Text="{Binding Description, Mode=OneWayToSource, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Height="49" Margin="142,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="typeCmbx" ItemsSource="{Binding Path=ManifestTypes}" SelectedValue="{Binding Type, Mode=OneWayToSource, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Margin="142,176,0,0" VerticalAlignment="Top" Width="120" Height="26" Cursor="Arrow" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="alcosolCmbx" ItemsSource="{StaticResource AlcosolList}" DisplayMemberPath="ServeAlcosol" SelectedValuePath="ServeAlcosol" SelectedValue="{Binding ServeAlcosol, Mode=OneWayToSource, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Margin="142,208,0,0" VerticalAlignment="Top" Width="120" Height="26" Grid.ColumnSpan="2"/>
+        <RadioButton x:Name="handipYes" IsChecked="{Binding ForHandicap, Converter={StaticResource RadioButtonCheckedConverter}, ConverterParameter={StaticResource True}, UpdateSourceTrigger=Explicit}" Content="Yes" HorizontalAlignment="Left" Margin="142,276,0,0" VerticalAlignment="Top" GroupName="Handicap" Grid.ColumnSpan="2"/>
+        <RadioButton x:Name="handipNo" IsChecked="{Binding ForHandicap, Converter={StaticResource RadioButtonCheckedConverter}, ConverterParameter={StaticResource False}, UpdateSourceTrigger=Explicit}" Content="No" HorizontalAlignment="Left" Margin="59,276,0,0" VerticalAlignment="Top" GroupName="Handicap" Grid.Column="1"/>
+        <RadioButton x:Name="smokingYes" IsChecked="{Binding SmokingAllowed, Converter={StaticResource RadioButtonCheckedConverter}, ConverterParameter={StaticResource True}, UpdateSourceTrigger=Explicit}" Content="Yes" HorizontalAlignment="Left" Margin="142,306,0,0" VerticalAlignment="Top" GroupName="Smoking" Grid.ColumnSpan="2"/>
+        <RadioButton x:Name="smokingNo" IsChecked="{Binding SmokingAllowed, Converter={StaticResource RadioButtonCheckedConverter}, ConverterParameter={StaticResource False}, UpdateSourceTrigger=Explicit}" Content="No" HorizontalAlignment="Left" Margin="59,306,0,0" VerticalAlignment="Top" GroupName="Smoking" Grid.Column="1"/>
+        <RadioButton x:Name="insadeYes" IsChecked="{Binding IsOutside, Converter={StaticResource RadioButtonCheckedConverter}, ConverterParameter={StaticResource False}, UpdateSourceTrigger=Explicit}" Content="Inside" HorizontalAlignment="Left" Margin="142,338,0,0" VerticalAlignment="Top" GroupName="InOutside" Grid.ColumnSpan="2"/>
+        <RadioButton x:Name="outsideNo" IsChecked="{Binding IsOutside, Converter={StaticResource RadioButtonCheckedConverter}, ConverterParameter={StaticResource True}, UpdateSourceTrigger=Explicit}" Content="Outside" HorizontalAlignment="Left" Margin="59,338,0,0" VerticalAlignment="Top" GroupName="InOutside" Grid.Column="1"/>
+        <DatePicker x:Name="dateManifPicker" SelectedDate="{Binding Date, Mode=OneWayToSource, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Margin="142,424,0,0" VerticalAlignment="Top" Width="120" Height="26" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="priceCmbx" ItemsSource="{StaticResource PriceList}" DisplayMemberPath="PriceCategory" SelectedValuePath="PriceCategory" SelectedValue="{Binding PriceCategory, Mode=OneWayToSource, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Margin="142,362,0,0" VerticalAlignment="Top" Width="120" Height="26" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="audienceCmbx" ItemsSource="{StaticResource AudienceList}" DisplayMemberPath="ExpectedAudience" SelectedValuePath="ExpectedAudience" SelectedValue="{Binding ExpectedAudience, Mode=OneWayToSource, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Margin="142,394,0,0" VerticalAlignment="Top" Width="120" Height="26" Grid.ColumnSpan="2"/>
         <Button x:Name="addManifestBtn" Content="Add" HorizontalAlignment="Left" Margin="142,479,0,0" VerticalAlignment="Top" Width="75" Height="26" RenderTransformOrigin="0.467,0.769" IsDefault="True" Grid.ColumnSpan="2" Click="addManifestBtn_Click"/>
         <Button x:Name="cancelAddManBtn" Content="Cancel" HorizontalAlignment="Left" Margin="93,479,0,0" VerticalAlignment="Top" Width="74" RenderTransformOrigin="0.32,0.35" Height="26" Click="cancelAddManBtn_Click" Grid.Column="1"/>
-        <Button x:Name="addTypeBtn" Content="Add" HorizontalAlignment="Left" Margin="125,176,0,0" VerticalAlignment="Top" Width="42" Height="26" Grid.Column="1"/>
+        <Button x:Name="addTypeBtn" Content="Add" HorizontalAlignment="Left" Margin="125,176,0,0" VerticalAlignment="Top" Width="42" Height="26" Grid.Column="1" Click="addTypeBtn_Click"/>
         <Label x:Name="label12" Content="Add manifestation:" HorizontalAlignment="Left" Margin="22,19,0,0" VerticalAlignment="Top" Height="30" RenderTransformOrigin="0.579,0.207" Width="240" FontWeight="Bold" Grid.ColumnSpan="2" FontSize="14.667"/>
+        <TextBox x:Name="iconPath" HorizontalAlignment="Left" Height="26" Margin="142,238,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" VerticalContentAlignment="Center" IsEnabled="False"/>
+        <Button x:Name="browseBtn" Content="Browse" Grid.Column="1" HorizontalAlignment="Left" Margin="125,238,0,0" VerticalAlignment="Top" Width="44" Height="26" Click="browseBtn_Click"/>
 
     </Grid>
 </Window>

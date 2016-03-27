@@ -9,7 +9,7 @@
     <Grid>
         <Button x:Name="add_manifest_btn" Content="Add Manifestation" HorizontalAlignment="Left" Margin="295,80,0,0" VerticalAlignment="Top" Width="145" Click="add_manifest_btn_Click" Height="26"/>
         <Button x:Name="add_tag_btn" Content="Add Tag" HorizontalAlignment="Left" Margin="295,139,0,0" VerticalAlignment="Top" Width="145" Height="26" Click="add_tag_btn_Click"/>
-        <Button x:Name="button2" Content="Add Manifestation Type" HorizontalAlignment="Left" Margin="295,201,0,0" VerticalAlignment="Top" Width="145" Height="26"/>
+        <Button x:Name="add_manifetsType_btn" Content="Add Manifestation Type" HorizontalAlignment="Left" Margin="295,201,0,0" VerticalAlignment="Top" Width="145" Height="26" Click="add_manifetsType_btn_Click"/>
 
     </Grid>
 </Window>

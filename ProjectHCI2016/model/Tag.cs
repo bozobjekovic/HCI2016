@@ -25,6 +25,11 @@ namespace model
             this.descriprion = descriprion;
         }
 
+        public override string ToString()
+        {
+            return string.Format("ID: {0}\n    Color: {1}\n    Descript.: {2}", tadID, color, descriprion);
+        }
+
         public string TadID
         {
             get

@@ -59,6 +59,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dialogs\AddManifestTypeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\AddTagDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -74,9 +78,13 @@
     <Compile Include="Dialogs\AddManifestDialog.xaml.cs">
       <DependentUpon>AddManifestDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\AddManifestTypeDialog.xaml.cs">
+      <DependentUpon>AddManifestTypeDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\AddTagDialog.xaml.cs">
       <DependentUpon>AddTagDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\RadioButtonCheckedConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -108,6 +116,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\model\model.csproj">
+      <Project>{13a9d0ad-256c-4387-8727-f5ef780042f0}</Project>
+      <Name>model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

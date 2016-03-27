@@ -4,32 +4,31 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace model
 {
-    public class Manifestation: INotifyPropertyChanged
+    public class Manifestation
     {
         private string idManifest;
         private string name;
         private string description;
         private ManifestationType type;
-        private ServeAlcohol serveAlcosol;
-        private Uri icon;
+        private string serveAlcosol;
+        private ImageSource icon;
         private bool forHandicap;
         private bool smokingAllowed;
         private bool isOutside;
-        private PriceCategory priceCategory;
+        private string priceCategory;
         private string expectedAudience;
         private DateTime date;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public Manifestation()
         {
 
         }
 
-        public Manifestation(string idManifest, string name, string description, ManifestationType type, ServeAlcohol serveAlcosol, Uri icon, bool forHandicap, bool smokingAllowed, bool isOutside, PriceCategory priceCategory, string expectedAudience, DateTime date)
+        public Manifestation(string idManifest, string name, string description, ManifestationType type, string serveAlcosol, ImageSource icon, bool forHandicap, bool smokingAllowed, bool isOutside, string priceCategory, string expectedAudience, DateTime date)
         {
             this.IdManifest = idManifest;
             this.Name = name;
@@ -51,14 +50,6 @@ namespace model
                 idManifest, name, description, Type, serveAlcosol, icon, forHandicap, smokingAllowed, isOutside, priceCategory, expectedAudience, date);
         }
 
-        protected virtual void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
-
         public string IdManifest
         {
             get
@@ -68,11 +59,7 @@ namespace model
 
             set
             {
-                if (value != idManifest)
-                {
-                    idManifest = value;
-                    OnPropertyChanged("IdManifest");
-                }
+                idManifest = value;
             }
         }
 
@@ -85,11 +72,7 @@ namespace model
 
             set
             {
-                if (value != name)
-                {
-                    name = value;
-                    OnPropertyChanged("Name");
-                }
+                name = value;
             }
         }
 
@@ -102,11 +85,7 @@ namespace model
 
             set
             {
-                if (value != description)
-                {
-                    description = value;
-                    OnPropertyChanged("Description");
-                }
+                description = value;
             }
         }
 
@@ -119,15 +98,11 @@ namespace model
 
             set
             {
-                if (value != type)
-                {
-                    type = value;
-                    OnPropertyChanged("Type");
-                }
+                type = value;
             }
         }
 
-        public ServeAlcohol ServeAlcosol
+        public string ServeAlcosol
         {
             get
             {
@@ -136,15 +111,11 @@ namespace model
 
             set
             {
-                if (value != serveAlcosol)
-                {
-                    serveAlcosol = value;
-                    OnPropertyChanged("ServeAlcosol");
-                }
+                serveAlcosol = value;
             }
         }
 
-        public Uri Icon
+        public ImageSource Icon
         {
             get
             {
@@ -153,11 +124,7 @@ namespace model
 
             set
             {
-                if (value != icon)
-                {
-                    icon = value;
-                    OnPropertyChanged("Icon");
-                }
+                icon = value;
             }
         }
 
@@ -170,11 +137,7 @@ namespace model
 
             set
             {
-                if (value != forHandicap)
-                {
-                    forHandicap = value;
-                    OnPropertyChanged("ForHandicap");
-                }
+                forHandicap = value;
             }
         }
 
@@ -187,11 +150,7 @@ namespace model
 
             set
             {
-                if (value != smokingAllowed)
-                {
-                    smokingAllowed = value;
-                    OnPropertyChanged("SmokingAllowed");
-                }
+                smokingAllowed = value;
             }
         }
 
@@ -204,15 +163,11 @@ namespace model
 
             set
             {
-                if (value != isOutside)
-                {
-                    isOutside = value;
-                    OnPropertyChanged("IsOutside");
-                }
+                isOutside = value;
             }
         }
 
-        public PriceCategory PriceCategory
+        public string PriceCategory
         {
             get
             {
@@ -221,11 +176,7 @@ namespace model
 
             set
             {
-                if (value != priceCategory)
-                {
-                    priceCategory = value;
-                    OnPropertyChanged("PriceCategory");
-                }
+                priceCategory = value;
             }
         }
 
@@ -238,11 +189,7 @@ namespace model
 
             set
             {
-                if (value != expectedAudience)
-                {
-                    expectedAudience = value;
-                    OnPropertyChanged("ExpectedAudience");
-                }
+                expectedAudience = value;
             }
         }
 
@@ -255,11 +202,7 @@ namespace model
 
             set
             {
-                if (value != date)
-                {
-                    date = value;
-                    OnPropertyChanged("Date");
-                }
+                date = value;
             }
         }
 
