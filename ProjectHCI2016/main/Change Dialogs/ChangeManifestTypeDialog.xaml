@@ -1,0 +1,33 @@
+﻿<Window x:Class="main.Change_Dialogs.ChangeManifestTypeDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:main.Change_Dialogs"
+        mc:Ignorable="d"
+        Icon="../Images/main.png"
+        Title="Change Manifestation Type" Height="383" Width="333" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="58*"/>
+            <ColumnDefinition Width="51*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="label" Content="Type ID:" HorizontalAlignment="Left" Margin="22,60,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="Name:" HorizontalAlignment="Left" Margin="22,91,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label2" Content="Icon:" HorizontalAlignment="Left" Margin="22,149,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label3" Content="Description:" HorizontalAlignment="Left" Margin="22,210,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label4" Content="Change manifestation type:" HorizontalAlignment="Left" Margin="22,19,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14.667" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="idTB" Text="{Binding SelectedManifestationType.IdManifestType, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Height="26" Margin="105,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" VerticalContentAlignment="Center" IsEnabled="False" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="nameTB" Text="{Binding SelectedManifestationType.Name, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Height="26" Margin="105,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" VerticalContentAlignment="Center" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="descriptionTB" Text="{Binding SelectedManifestationType.Description, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Height="55" Margin="105,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" Grid.ColumnSpan="2"/>
+        <Button x:Name="cancel_addBtn" Content="Cancel" HorizontalAlignment="Left" Margin="13,300,0,0" VerticalAlignment="Top" Width="75" Height="26" Click="cancel_addBtn_Click" Grid.Column="1"/>
+        <Button x:Name="saveTypeBtn" Content="Save" HorizontalAlignment="Left" Margin="105,300,0,0" VerticalAlignment="Top" Width="75" Height="26" IsDefault="True" Click="saveTypeBtn_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="browseBtn" Content="Browse" HorizontalAlignment="Left" Margin="43,149,0,0" VerticalAlignment="Top" Width="45" Height="26" Click="browseBtn_Click" Grid.Column="1"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="83" Margin="105,122,0,0" VerticalAlignment="Top" Width="107" Grid.ColumnSpan="2"/>
+        <Image x:Name="image" Stretch="Fill" Source="{Binding SelectedManifestationType.Icon, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Height="83" Margin="105,122,0,0" VerticalAlignment="Top" Width="107" Grid.ColumnSpan="2"/>
+        <Label x:Name="label7" HorizontalAlignment="Left" Margin="88,89,0,0" VerticalAlignment="Top" Foreground="Red" Width="53" HorizontalContentAlignment="Center" Padding="0" Height="13" Grid.Column="1"/>
+        <Label x:Name="label8" HorizontalAlignment="Left" Margin="88,102,0,0" VerticalAlignment="Top" Foreground="Red" Width="53" HorizontalContentAlignment="Center" Padding="0" Height="13" Grid.Column="1"/>
+        <Label x:Name="label9" HorizontalAlignment="Left" Margin="88,149,0,0" VerticalAlignment="Top" Foreground="Red" Width="53" HorizontalContentAlignment="Center" Padding="0" Height="13" Grid.Column="1"/>
+        <Label x:Name="label10" HorizontalAlignment="Left" Margin="88,161,0,0" VerticalAlignment="Top" Foreground="Red" Width="53" HorizontalContentAlignment="Center" Padding="0" Height="13" Grid.Column="1"/>
+    </Grid>
+</Window>

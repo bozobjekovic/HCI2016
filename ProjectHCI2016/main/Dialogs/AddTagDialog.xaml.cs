@@ -1,6 +1,7 @@
 ﻿using model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Xceed.Wpf.Toolkit;
 
 namespace main.Dialogs
 {
@@ -22,14 +24,11 @@ namespace main.Dialogs
     {
         private Tag tag;
 
-        private List<Tag> tags;
-
-        public AddTagDialog(List<Tag> tags)
+        public AddTagDialog()
         {
             InitializeComponent();
 
             tag = new Tag();
-            this.tags = tags;
 
             this.DataContext = tag;
         }
@@ -41,13 +40,41 @@ namespace main.Dialogs
 
         private void addTagBtn_Click(object sender, RoutedEventArgs e)
         {
+            bool fillingOK = true;
             BindingExpression tagID = idTB.GetBindingExpression(TextBox.TextProperty);
+            if (idTB.Text.Trim().Equals(""))
+            {
+                label9.Content = "ID is";
+                label10.Content = "required!";
+                fillingOK = false;
+            }
+            else
+            {
+                label9.Content = "";
+                label10.Content = "";
+                for (int i = 0; i < MainWindow.Tags.Count; i++)
+                {
+                    if (MainWindow.Tags.ElementAt(i).TadID.Equals(idTB.Text))
+                    {
+                        label9.Content = "ID";
+                        label10.Content = "exists!";
+                        fillingOK = false;
+                        break;
+                    }
+                }
+            }
             tagID.UpdateSource();
+            BindingExpression tagColor = colorPicker.GetBindingExpression(ColorPicker.SelectedColorProperty);
+            tagColor.UpdateSource();
             BindingExpression tagDescription = descrriptionTB.GetBindingExpression(TextBox.TextProperty);
             tagDescription.UpdateSource();
 
-            tags.Add(tag);
-            Close();
+            if (fillingOK)
+            {
+                MainWindow.Tags.Add(tag);
+                Close();
+            }
         }
+
     }
 }

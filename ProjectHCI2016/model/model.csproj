@@ -46,7 +46,7 @@
     <Compile Include="Manifestation.cs" />
     <Compile Include="ManifestationType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServeAlcohol.cs" />
+    <Compile Include="Serialize_deserialize_data.cs" />
     <Compile Include="Tag.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

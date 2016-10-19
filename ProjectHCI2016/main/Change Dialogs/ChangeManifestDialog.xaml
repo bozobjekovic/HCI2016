@@ -1,0 +1,78 @@
+﻿<Window x:Class="main.Change_Dialogs.ChangeManifestDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:main.Dialogs"
+        xmlns:main="clr-namespace:main"
+        xmlns:model="clr-namespace:model;assembly=model"
+        mc:Ignorable="d"
+        Icon="../Images/main.png"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="Change Manifestation" Height="707.5" Width="347" ResizeMode="NoResize">
+    <Window.Resources>
+        <local:RadioButtonCheckedConverter x:Key="RadioButtonCheckedConverter" ></local:RadioButtonCheckedConverter>
+        <sys:Boolean x:Key="True">True</sys:Boolean>
+        <sys:Boolean x:Key="False">False</sys:Boolean>
+        <x:Array x:Key="AlcosolList" Type="model:Manifestation">
+            <model:Manifestation ServeAlcosol = "No alcosol"/>
+            <model:Manifestation ServeAlcosol = "Bring alcosol"/>
+            <model:Manifestation ServeAlcosol = "Buy alcosol"/>
+        </x:Array>
+        <x:Array x:Key="PriceList" Type="model:Manifestation">
+            <model:Manifestation PriceCategory = "Free"/>
+            <model:Manifestation PriceCategory = "Low prices" />
+            <model:Manifestation PriceCategory = "Medium prices"/>
+            <model:Manifestation PriceCategory = "High prices"/>
+        </x:Array>
+        <x:Array x:Key="AudienceList" Type="model:Manifestation">
+            <model:Manifestation ExpectedAudience = "Kids"/>
+            <model:Manifestation ExpectedAudience = "Teenagers" />
+            <model:Manifestation ExpectedAudience = "Middle-aged"/>
+            <model:Manifestation ExpectedAudience = "Old/Elderly"/>
+        </x:Array>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="143*"/>
+            <ColumnDefinition Width="199*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="label" Content="Manifestation ID:" HorizontalAlignment="Left" Margin="22,60,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="Name:" HorizontalAlignment="Left" Margin="22,90,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label2" Content="Type:" HorizontalAlignment="Left" Margin="22,176,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label3" Content="Description:" HorizontalAlignment="Left" Margin="22,122,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label4" Content="Alcosol status:" HorizontalAlignment="Left" Margin="22,208,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label5" Content="Icon:" HorizontalAlignment="Left" Margin="22,271,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label6" Content="For handicap:" HorizontalAlignment="Left" Margin="22,328,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label7" Content="Smoking:" HorizontalAlignment="Left" Margin="22,358,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label8" Content="Inside/Outside:" HorizontalAlignment="Left" Margin="22,390,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label9" Content="Price:" HorizontalAlignment="Left" Margin="22,420,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.789,0.192"/>
+        <Label x:Name="label10" Content="Expected audience:&#xD;&#xA;" HorizontalAlignment="Left" Margin="22,452,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.289,0.269" Height="26"/>
+        <Label x:Name="label11" Content="Date:" HorizontalAlignment="Left" Margin="22,482,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="manifestID" Text="{Binding SelectedManifestation.IdManifest, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Height="26" Margin="142,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" VerticalContentAlignment="Center" IsEnabled="False"/>
+        <TextBox x:Name="name" Text="{Binding SelectedManifestation.Name, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Height="26" Margin="142,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="description" Text="{Binding SelectedManifestation.Description, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Height="49" Margin="142,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="typeCmbx" ItemsSource="{Binding Source={x:Static main:MainWindow.ManifestTypes}}" SelectedValue="{Binding SelectedManifestation.Type, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Margin="142,176,0,0" VerticalAlignment="Top" Width="120" Height="26" Cursor="Arrow" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="alcosolCmbx" ItemsSource="{StaticResource AlcosolList}" DisplayMemberPath="ServeAlcosol" SelectedValuePath="ServeAlcosol" SelectedValue="{Binding SelectedManifestation.ServeAlcosol, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Margin="142,208,0,0" VerticalAlignment="Top" Width="120" Height="26" Grid.ColumnSpan="2"/>
+        <RadioButton x:Name="handipYes" IsChecked="{Binding SelectedManifestation.ForHandicap, Converter={StaticResource RadioButtonCheckedConverter}, ConverterParameter={StaticResource True}, UpdateSourceTrigger=Explicit}" Content="Yes" HorizontalAlignment="Left" Margin="142,334,0,0" VerticalAlignment="Top" GroupName="Handicap" Grid.ColumnSpan="2"/>
+        <RadioButton x:Name="handipNo" IsChecked="{Binding SelectedManifestation.ForHandicap, Converter={StaticResource RadioButtonCheckedConverter}, ConverterParameter={StaticResource False}, UpdateSourceTrigger=Explicit}" Content="No" HorizontalAlignment="Left" Margin="59,334,0,0" VerticalAlignment="Top" GroupName="Handicap" Grid.Column="1"/>
+        <RadioButton x:Name="smokingYes" IsChecked="{Binding SelectedManifestation.SmokingAllowed, Converter={StaticResource RadioButtonCheckedConverter}, ConverterParameter={StaticResource True}, UpdateSourceTrigger=Explicit}" Content="Yes" HorizontalAlignment="Left" Margin="142,364,0,0" VerticalAlignment="Top" GroupName="Smoking" Grid.ColumnSpan="2"/>
+        <RadioButton x:Name="smokingNo" IsChecked="{Binding SelectedManifestation.SmokingAllowed, Converter={StaticResource RadioButtonCheckedConverter}, ConverterParameter={StaticResource False}, UpdateSourceTrigger=Explicit}" Content="No" HorizontalAlignment="Left" Margin="59,364,0,0" VerticalAlignment="Top" GroupName="Smoking" Grid.Column="1"/>
+        <RadioButton x:Name="insadeYes" IsChecked="{Binding SelectedManifestation.IsOutside, Converter={StaticResource RadioButtonCheckedConverter}, ConverterParameter={StaticResource False}, UpdateSourceTrigger=Explicit}" Content="Inside" HorizontalAlignment="Left" Margin="142,396,0,0" VerticalAlignment="Top" GroupName="InOutside" Grid.ColumnSpan="2"/>
+        <RadioButton x:Name="outsideNo" IsChecked="{Binding SelectedManifestation.IsOutside, Converter={StaticResource RadioButtonCheckedConverter}, ConverterParameter={StaticResource True}, UpdateSourceTrigger=Explicit}" Content="Outside" HorizontalAlignment="Left" Margin="59,396,0,0" VerticalAlignment="Top" GroupName="InOutside" Grid.Column="1"/>
+        <DatePicker x:Name="dateManifPicker" SelectedDate="{Binding SelectedManifestation.Date, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Margin="142,482,0,0" VerticalAlignment="Top" Width="120" Height="26" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="priceCmbx" ItemsSource="{StaticResource PriceList}" DisplayMemberPath="PriceCategory" SelectedValuePath="PriceCategory" SelectedValue="{Binding SelectedManifestation.PriceCategory, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Margin="142,420,0,0" VerticalAlignment="Top" Width="120" Height="26" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="audienceCmbx" ItemsSource="{StaticResource AudienceList}" DisplayMemberPath="ExpectedAudience" SelectedValuePath="ExpectedAudience" SelectedValue="{Binding SelectedManifestation.ExpectedAudience, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Margin="142,452,0,0" VerticalAlignment="Top" Width="120" Height="26" Grid.ColumnSpan="2"/>
+        <Button x:Name="saveManifestBtn" Content="Save" HorizontalAlignment="Left" Margin="142,625,0,0" VerticalAlignment="Top" Width="75" Height="26" RenderTransformOrigin="0.467,0.769" IsDefault="True" Grid.ColumnSpan="2" Click="saveManifestBtn_Click"/>
+        <Button x:Name="cancelAddManBtn" Content="Cancel" HorizontalAlignment="Left" Margin="93,625,0,0" VerticalAlignment="Top" Width="74" RenderTransformOrigin="0.32,0.35" Height="26" Click="cancelAddManBtn_Click" Grid.Column="1"/>
+        <Button x:Name="addTypeBtn" Content="Add" HorizontalAlignment="Left" Margin="125,176,0,0" VerticalAlignment="Top" Width="42" Height="26" Grid.Column="1" Click="addTypeBtn_Click"/>
+        <Label x:Name="label12" Content="Change manifestation:" HorizontalAlignment="Left" Margin="22,19,0,0" VerticalAlignment="Top" Height="30" RenderTransformOrigin="0.579,0.207" Width="240" FontWeight="Bold" Grid.ColumnSpan="2" FontSize="14.667"/>
+        <Button x:Name="browseBtn" Content="Browse" Grid.Column="1" HorizontalAlignment="Left" Margin="125,271,0,0" VerticalAlignment="Top" Width="44" Height="26" Click="browseBtn_Click"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="90" Margin="142,239,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+        <Image x:Name="image" Stretch="Fill" Source="{Binding SelectedManifestation.Icon, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Height="90" Margin="4,239,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+        <ListBox x:Name="listBox" ItemsSource="{Binding Source={x:Static main:MainWindow.Tags}}" SelectedValue="{Binding SelectedManifestation.ManifTags, Mode=TwoWay, UpdateSourceTrigger=Explicit}" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="85" Margin="142,513,0,0" VerticalAlignment="Top" Width="168" SelectionMode="Multiple"/>
+        <Label x:Name="label13" Content="Tags:" HorizontalAlignment="Left" Margin="22,544,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Nlabel16f" Grid.Column="1" HorizontalAlignment="Left" Margin="119,88,0,0" VerticalAlignment="Top" Width="69" Foreground="Red" Padding="0" ScrollViewer.CanContentScroll="True" Height="13" HorizontalContentAlignment="Center"/>
+        <Label x:Name="Nlabel17s" Grid.Column="1" HorizontalAlignment="Left" Margin="119,101,0,0" VerticalAlignment="Top" Width="69" Height="13" Padding="0" Foreground="Red" HorizontalContentAlignment="Center"/>
+    </Grid>
+</Window>

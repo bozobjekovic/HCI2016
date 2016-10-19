@@ -27,7 +27,7 @@ namespace model
 
         public override string ToString()
         {
-            return string.Format("ID: {0}\n    Color: {1}\n    Descript.: {2}", tadID, color, descriprion);
+            return string.Format("{0}", descriprion);
         }
 
         public string TadID

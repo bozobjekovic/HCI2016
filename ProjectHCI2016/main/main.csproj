@@ -49,12 +49,49 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ToolKit\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Change Dialogs\ChangeManifestDialog.xaml.cs">
+      <DependentUpon>ChangeManifestDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Change Dialogs\ChangeManifestTypeDialog.xaml.cs">
+      <DependentUpon>ChangeManifestTypeDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Change Dialogs\ChangeTagDialog.xaml.cs">
+      <DependentUpon>ChangeTagDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\ManifestationTable.xaml.cs">
+      <DependentUpon>ManifestationTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\ManifestationTypeTable.xaml.cs">
+      <DependentUpon>ManifestationTypeTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\TagTable.xaml.cs">
+      <DependentUpon>TagTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tutorial\TutorialExample.xaml.cs">
+      <DependentUpon>TutorialExample.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Change Dialogs\ChangeManifestDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Change Dialogs\ChangeManifestTypeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Change Dialogs\ChangeTagDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\AddManifestDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -89,6 +126,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Tables\ManifestationTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tables\ManifestationTypeTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tables\TagTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tutorial\TutorialExample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -122,6 +175,30 @@
       <Project>{13a9d0ad-256c-4387-8727-f5ef780042f0}</Project>
       <Name>model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cityMap.jpg" />
+    <Resource Include="Images\play.png" />
+    <Resource Include="Images\info.png" />
+    <Resource Include="Images\main.png" />
+    <Content Include="ToolKit\Xceed.Wpf.AvalonDock.dll" />
+    <Content Include="ToolKit\Xceed.Wpf.AvalonDock.Themes.Aero.dll" />
+    <Content Include="ToolKit\Xceed.Wpf.AvalonDock.Themes.Metro.dll" />
+    <Content Include="ToolKit\Xceed.Wpf.AvalonDock.Themes.VS2010.dll" />
+    <Content Include="ToolKit\Xceed.Wpf.DataGrid.dll" />
+    <Content Include="ToolKit\Xceed.Wpf.Toolkit.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ToolKit\de\" />
+    <Folder Include="ToolKit\es\" />
+    <Folder Include="ToolKit\fr\" />
+    <Folder Include="ToolKit\hu\" />
+    <Folder Include="ToolKit\it\" />
+    <Folder Include="ToolKit\pt-BR\" />
+    <Folder Include="ToolKit\ro\" />
+    <Folder Include="ToolKit\ru\" />
+    <Folder Include="ToolKit\sv\" />
+    <Folder Include="ToolKit\zh-Hans\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

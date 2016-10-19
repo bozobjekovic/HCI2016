@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace model
     {
         private string idManifestType;
         private string name;
-        private ImageSource icon;
+        private string icon;
         private string description;
 
         public ManifestationType()
@@ -19,7 +20,7 @@ namespace model
 
         }
 
-        public ManifestationType(string idManifestType, string name, ImageSource icon, string description)
+        public ManifestationType(string idManifestType, string name, string icon, string description)
         {
             this.idManifestType = idManifestType;
             this.name = name;
@@ -28,6 +29,11 @@ namespace model
         }
 
         public override string ToString()
+        {
+            return string.Format("{0}", name);
+        }
+
+        public string Display()
         {
             return string.Format("ID: {0}\n    Name: {1}\n    Icon: {2}\n    Descript.: {3}", idManifestType, name, icon, description);
         }
@@ -58,7 +64,7 @@ namespace model
             }
         }
 
-        public ImageSource Icon
+        public string Icon
         {
             get
             {
@@ -83,6 +89,5 @@ namespace model
                 description = value;
             }
         }
-
     }
 }

@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 using model;
 using System.Collections.ObjectModel;
 using Microsoft.Win32;
+using Xceed.Wpf.Toolkit;
+using main;
 
 namespace main.Dialogs
 {
@@ -24,19 +26,17 @@ namespace main.Dialogs
     {
         private Manifestation manifestation;
 
-        private List<Manifestation> manifestations;
-        private ObservableCollection<ManifestationType> manifTypes;
-
-        public AddManifestDialog(List<Manifestation> manifs, ObservableCollection<ManifestationType> types)
+        public AddManifestDialog()
         {
             InitializeComponent();
+            dateManifPicker.SelectedDate = DateTime.Now.Date;
+            dateManifPicker.DisplayDateStart = DateTime.Now.Date;
+
+            setDefault();
 
             manifestation = new Manifestation();
-            manifestations = manifs;
-            manifTypes = types;
 
             this.DataContext = manifestation;
-            typeCmbx.DataContext = this;
         }
 
         private void cancelAddManBtn_Click(object sender, RoutedEventArgs e)
@@ -44,16 +44,61 @@ namespace main.Dialogs
             Close();
         }
 
+        private void setDefault()
+        {
+            typeCmbx.SelectedIndex = 0;
+            alcosolCmbx.SelectedIndex = 0;
+            priceCmbx.SelectedIndex = 0;
+            audienceCmbx.SelectedIndex = 0;
+        }
+
         private void addManifestBtn_Click(object sender, RoutedEventArgs e)
         {
+            bool fillingOK = true;
             BindingExpression manifID = manifestID.GetBindingExpression(TextBox.TextProperty);
+            if (manifestID.Text.Trim().Equals(""))
+            {
+                IDflabel14.Content = "ID is";
+                IDslabel15.Content = "required!";
+                fillingOK = false;
+            }
+            else
+            {
+                IDflabel14.Content = "";
+                IDslabel15.Content = "";
+                for (int i = 0; i < MainWindow.Manifestations.Count; i++)
+                {
+                    if (MainWindow.Manifestations.ElementAt(i).IdManifest.Equals(manifestID.Text))
+                    {
+                        IDflabel14.Content = "ID";
+                        IDslabel15.Content = "exists!";
+                        fillingOK = false;
+                        break;
+                    }
+                }
+            }
             manifID.UpdateSource();
             BindingExpression manifName = name.GetBindingExpression(TextBox.TextProperty);
+            if (name.Text.Trim().Equals(""))
+            {
+                Nlabel16f.Content = "Name is";
+                Nlabel17s.Content = "required!";
+                fillingOK = false;
+            }
+            else
+            {
+                Nlabel16f.Content = "";
+                Nlabel17s.Content = "";
+            }
             manifName.UpdateSource();
             BindingExpression manifDescript = description.GetBindingExpression(TextBox.TextProperty);
             manifDescript.UpdateSource();
+            BindingExpression manifType = typeCmbx.GetBindingExpression(ComboBox.SelectedValueProperty);
+            manifType.UpdateSource();
             BindingExpression manifAlcosol = alcosolCmbx.GetBindingExpression(ComboBox.SelectedValueProperty);
             manifAlcosol.UpdateSource();
+            BindingExpression manifImage = image.GetBindingExpression(Image.SourceProperty);
+            manifImage.UpdateSource();
             BindingExpression manifHandicapYes = handipYes.GetBindingExpression(RadioButton.IsCheckedProperty);
             manifHandicapYes.UpdateSource();
             BindingExpression manifHandicapNo = handipNo.GetBindingExpression(RadioButton.IsCheckedProperty);
@@ -62,7 +107,7 @@ namespace main.Dialogs
             manifSmokingYes.UpdateSource();
             BindingExpression manifSmokingNo = smokingNo.GetBindingExpression(RadioButton.IsCheckedProperty);
             manifSmokingNo.UpdateSource();
-            BindingExpression manifInsade =insadeYes.GetBindingExpression(RadioButton.IsCheckedProperty);
+            BindingExpression manifInsade = insadeYes.GetBindingExpression(RadioButton.IsCheckedProperty);
             manifInsade.UpdateSource();
             BindingExpression manifOutside = outsideNo.GetBindingExpression(RadioButton.IsCheckedProperty);
             manifOutside.UpdateSource();
@@ -72,14 +117,31 @@ namespace main.Dialogs
             manifAudience.UpdateSource();
             BindingExpression manifDate = dateManifPicker.GetBindingExpression(DatePicker.SelectedDateProperty);
             manifDate.UpdateSource();
-            manifestations.Add(manifestation);
-            Close();
+
+            if (image.Source == null)
+            {
+                if (manifestation.Type != null)
+                {
+                    manifestation.Icon = manifestation.Type.Icon;
+                }
+            }
+
+            if (fillingOK)
+            {
+                MainWindow.Manifestations.Add(manifestation);
+                MainWindow.ManifestationsInTree.Add(manifestation);
+                Close();
+            }
         }
 
         private void addTypeBtn_Click(object sender, RoutedEventArgs e)
         {
-            AddManifestTypeDialog amtd = new AddManifestTypeDialog(manifTypes);
+            AddManifestTypeDialog amtd = new AddManifestTypeDialog();
             amtd.ShowDialog();
+            for (int i = 0; i < MainWindow.ManifestTypes.Count; i++)
+            {
+                Console.WriteLine(MainWindow.ManifestTypes.ElementAt(i));
+            }
         }
 
         private void browseBtn_Click(object sender, RoutedEventArgs e)
@@ -89,22 +151,13 @@ namespace main.Dialogs
             if (openFileDialog.ShowDialog() == true)
             {
                 string url = openFileDialog.FileName;
-                manifestation.Icon = new BitmapImage(new Uri(url, UriKind.Absolute));
-                iconPath.Text = url;
+                image.Source = new BitmapImage(new Uri(url, UriKind.Absolute));
             }
         }
 
-        public ObservableCollection<ManifestationType> ManifTypes
+        private void ClrPcker_Background_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
         {
-            get
-            {
-                return manifTypes;
-            }
-
-            set
-            {
-                manifTypes = value;
-            }
+            throw new NotImplementedException();
         }
     }
 }

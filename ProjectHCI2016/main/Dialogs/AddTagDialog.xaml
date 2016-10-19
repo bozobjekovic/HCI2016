@@ -3,19 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:main.Dialogs"
         mc:Ignorable="d"
-        Title="Add Tag" Height="290" Width="302">
+        Icon="../Images/main.png"
+        Title="Add Tag" Height="285" Width="333" ResizeMode="NoResize">
     <Grid>
         <Label x:Name="label" Content="Tag ID:" HorizontalAlignment="Left" Margin="22,60,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.565,0.846"/>
         <Label x:Name="label1" Content="Add tag:" HorizontalAlignment="Left" Margin="22,19,0,0" VerticalAlignment="Top" Height="30" FontSize="14.667" FontWeight="Bold" Width="200"/>
         <TextBox x:Name="idTB" Text="{Binding TadID, Mode=OneWayToSource, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Height="26" Margin="105,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" ToolTip="Enter tag ID" VerticalContentAlignment="Center"/>
         <Label x:Name="label2" Content="Color:" HorizontalAlignment="Left" Margin="22,91,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="colorTB" HorizontalAlignment="Left" Height="26" Margin="105,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" VerticalContentAlignment="Center"/>
+        <xctk:ColorPicker x:Name="colorPicker" SelectedColor="{Binding Color, Mode=OneWayToSource, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="157"  Height="26" Margin="105,91,0,0" ScrollViewer.CanContentScroll="True"></xctk:ColorPicker>
         <Label x:Name="label3" Content="Description:" HorizontalAlignment="Left" Margin="22,122,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="descrriptionTB" Text="{Binding Descriprion, Mode=OneWayToSource, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" Height="55" Margin="105,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
         <Button x:Name="addTagCancelBtn" Content="Cancel" HorizontalAlignment="Left" Margin="187,209,0,0" VerticalAlignment="Top" Width="75" Height="26" Click="addTagCancelBtn_Click"/>
         <Button x:Name="addTagBtn" Content="Add" HorizontalAlignment="Left" Margin="105,209,0,0" VerticalAlignment="Top" Width="75" Height="26" IsDefault="True" Click="addTagBtn_Click"/>
-
+        <Label x:Name="label9" HorizontalAlignment="Left" Margin="262,58,0,0" VerticalAlignment="Top" Foreground="Red" Width="53" HorizontalContentAlignment="Center" Padding="0" Height="13"/>
+        <Label x:Name="label10" HorizontalAlignment="Left" Margin="262,71,0,0" VerticalAlignment="Top" Foreground="Red" Width="53" HorizontalContentAlignment="Center" Padding="0" Height="13"/>
     </Grid>
 </Window>
